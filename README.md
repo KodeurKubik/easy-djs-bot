@@ -1,7 +1,7 @@
 # easy-djs-bot
 A simple module that simplify the DiscordJS coding.
 
-## About
+## About DiscordJS
 
 discord.js is a powerful [Node.js](https://nodejs.org) module that allows you to easily interact with the
 [Discord API](https://discord.com/developers/docs/intro).
@@ -32,7 +32,9 @@ bot.createCommand({
   name: "ping",
   reply: "Pong!",
   permissions: ['ROLE 1 ID', 'ROLE 2 ID', '...'] // For no permissions, just set permissions to False.
-}, token);
+});
+
+bot.start(token)
 ```
 
 ## Links
