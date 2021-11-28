@@ -25,14 +25,14 @@ npm install easy-djs-bot
 ```js
 const bot = require('easy-djs-bot');
 
-bot.login('PUT YOUR TOKEN HERE');
+const token = "PUT YOUR TOKEN HERE"
 
 bot.createCommand({
   prefix: "!",
   name: "ping",
   reply: "Pong!",
   permissions: ['ROLE 1 ID', 'ROLE 2 ID', '...'] // For no permissions, just set permissions to False.
-});
+}, token);
 ```
 
 ## Links
