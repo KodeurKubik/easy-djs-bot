@@ -23,18 +23,21 @@ npm install easy-djs-bot
 ## Example usage
 
 ```js
-const bot = require('easy-djs-bot');
+const bot = require('easy-djs');
+const token = 'PUT YOUR DISCORD BOT TOKEN HERE';
 
-const token = "PUT YOUR TOKEN HERE"
+async function messageArgsEvent(args) {
+  bot.channel.send('channel id', args[1])
+}
 
-bot.createCommand({
-  prefix: "!",
-  name: "ping",
-  reply: "Pong!",
-  permissions: ['ROLE 1 ID', 'ROLE 2 ID', '...'] // For no permissions, just set permissions to False.
+bot.createCommad({
+  prefix: '!',
+  name: 'ping',
+  reply: 'Pong!', // Set to false for no reponse
+  ping: true,
+  permissions: ['role id 1', 'role id 2', '...'] // For no permissions, just set permissions to False.
+  args: messageArgsEvent
 });
-
-bot.start(token)
 ```
 
 ## Links
