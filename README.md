@@ -44,4 +44,4 @@ bot.start(token)
 
 ## Help
 
-If you don't understand the documentation here or an error has occured, you can report it in this github or send a Discord message to Totoro_Gaming#0243.
+If you don't understand the documentation here or an error has occured, you can report it in this github, send a Discord message to Totoro_Gaming#0243 or send a mail to this email : totorogaming.mc@gmail.com
