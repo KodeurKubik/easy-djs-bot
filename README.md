@@ -26,8 +26,8 @@ npm install easy-djs-bot
 const bot = require('easy-djs');
 const token = 'PUT YOUR DISCORD BOT TOKEN HERE';
 
-async function messageArgsEvent(args) {
-  bot.channel.send('channel id', args[1])
+async function messageArgsEvent(author, channel, guild) {
+  bot.channel.send(token, channel.id, guild.id, `Arguments specified: ${args[0]}`)
 }
 
 bot.createCommad({
@@ -35,8 +35,8 @@ bot.createCommad({
   name: 'ping',
   reply: 'Pong!', // Set to false for no reponse
   ping: true,
-  permissions: ['role id 1', 'role id 2', '...'] // For no permissions, just set permissions to False.
-  args: messageArgsEvent
+  permissions: ['role id 1', 'role id 2', '...'], // For no permissions, just set permissions to False.
+  execute: messageArgsEvent
 });
 ```
 
