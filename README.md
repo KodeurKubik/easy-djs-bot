@@ -43,7 +43,7 @@ bot.createCommad({
 ## Links
 
 - [GitHub](https://github.com/totorogaming/easy-djs-bot)
-- [npm](https://www.npmjs.com/package/easy-djs-bot)
+- [npm SOON](https://www.npmjs.com/package/easy-djs-bot)
 
 ## Help
 
