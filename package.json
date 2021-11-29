@@ -1,0 +1,19 @@
+{
+  "name": "easy-djs-bot",
+  "version": "0.0.1",
+  "description": "A simple module that simplify the DiscordJS coding.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TotoroGaming/easy-djs-bot.git"
+  },
+  "author": "TotoroGaming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TotoroGaming/easy-djs-bot/issues"
+  },
+  "homepage": "https://github.com/TotoroGaming/easy-djs-bot#readme"
+}
