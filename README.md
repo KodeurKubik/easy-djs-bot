@@ -15,7 +15,6 @@ discord.js is a powerful [Node.js](https://nodejs.org) module that allows you to
 
 **Node.js 16.6.0 or newer is required.**  
 
-__CURRENTLY NOT WORKING__
 ```sh-session
 npm install easy-djs-bot
 ```
@@ -60,7 +59,7 @@ bot.waitForCommand()
 ## Links
 
 - [GitHub](https://github.com/totorogaming/easy-djs-bot)
-- [npm SOON](https://www.npmjs.com/package/easy-djs-bot)
+- [NPM](https://www.npmjs.com/package/easy-djs-bot)
 
 ## Help
 
