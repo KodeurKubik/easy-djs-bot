@@ -1,6 +1,6 @@
 {
   "name": "easy-djs-bot",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple module that simplify the DiscordJS coding.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/TotoroGaming/easy-djs-bot/issues"
   },
-  "homepage": "https://github.com/TotoroGaming/easy-djs-bot#readme"
+  "homepage": "https://github.com/TotoroGaming/easy-djs-bot#readme",
+  "dependencies": {
+    "discord.js": "^13.3.1"
+  }
 }
