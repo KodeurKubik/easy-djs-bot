@@ -23,13 +23,13 @@ npm install easy-djs-bot
 ## Example usage
 
 ```js
-const bot = require('easy-djs');
-const token = 'PUT YOUR DISCORD BOT TOKEN HERE';
+const bot = require('easy-djs-bot');
 
-bot.setPrefix('!')
+bot.setPrefix('!');
+bot.setToken('PUT YOUR DISCORD BOT TOKEN HERE');
 
-async function messageArgsEvent(author, channel, guild, args) {
-  bot.channel.send(token, channel.id, guild.id, `Pong again, __${author.username}__!\nArguments: ${args[0]}`)
+async function pingEvent(author, guild, channel, args) {
+    bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: *${args.join(' ; ')}*`)
 }
 
 bot.createCommad({
@@ -39,6 +39,22 @@ bot.createCommad({
   permissions: ['role id 1', 'role id 2', '...'], // For no permissions, just set permissions to False.
   execute: messageArgsEvent
 }, true); // Set to false for no prefix (only for this command)
+
+
+
+async function pingEvent(author, guild, channel, args) {
+    bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: ${args[0]}`)
+}
+
+bot.createCommand({
+    name: "ping",
+    reply: "Pong!",
+    ping: true,
+    permissions: [],
+    execute: pingEvent
+}, true);
+
+bot.waitForCommand()
 ```
 
 ## Links
