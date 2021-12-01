@@ -42,10 +42,10 @@ async function waitForCommand() {
     const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_WEBHOOKS] })
 
     client.on('messageCreate', async message => {
-        const args = message.content.split(/ +/).shift();
+        const args = message.content.split(/ +/)
 
-        if (allComs[message.content]) {
-            let com = allComs[message.content]
+        if (allComs[args[0]]) {
+            let com = allComs[args[0]]
 
             let allPerm = []
             let toDo = true
@@ -60,13 +60,11 @@ async function waitForCommand() {
             if (toDo === true && com.execute !== false) {
                 const author = {
                     id: message.author.id,
-                    username: message.author.username,
-                    avatar: message.author.avatarURL({format: "png", dynamic: true})
+                    username: message.author.username
                 }
                 const guild = {
                     id: message.guild.id,
-                    name: message.guild.name,
-                    avatar: message.guild.iconURL({format: "png", dynamic: true})
+                    name: message.guild.name
                 }
                 const channel = {
                     id: message.channel.id,
