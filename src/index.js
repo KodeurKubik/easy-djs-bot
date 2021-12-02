@@ -1,13 +1,13 @@
 'use strict';
 
 // Command
-exports.createCommand = require('./client/createCommand');
-exports.waitForCommand = require('./client/MainFunctions').waitForCommand;
+exports.createCommand = require('./src/client/createCommand');
+exports.waitForCommand = require('./src/client/MainFunctions').waitForCommand;
 
 // Channel
-exports.channel = require('./channel/index');
+exports.channel = require('./src/channel/index');
 
 // Utilities
 exports.version = require('../package.json').version;
-exports.setPrefix = require('./client/MainFunctions').setPrefix;
-exports.setToken = require('./client/MainFunctions').setToken;
+exports.setPrefix = require('./src/client/MainFunctions').setPrefix;
+exports.setToken = require('./src/client/MainFunctions').setToken;
