@@ -27,6 +27,17 @@ const bot = require('easy-djs-bot');
 bot.setPrefix('!');
 bot.setToken('PUT YOUR DISCORD BOT TOKEN HERE');
 
+bot.setHelpCategory([
+    {
+        name: "🌀 Other",
+        value: "All commands without category"
+    },
+    {
+        name: "🚷 Admin",
+        value: "Commands for Admins"
+    }
+])$
+
 async function pingEvent(author, guild, channel, args) {
     bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: \`${args.join(' ; ')}*\``)
 }
@@ -34,7 +45,9 @@ async function pingEvent(author, guild, channel, args) {
 bot.createCommad({
   name: 'ping', // Name of the command (must be unique)
   reply: 'Pong!', // Set to false for no reponse
+  category: "🌀 Other",
   ping: true, // Ping the user that used the command ?
+  description: "Ping the bot!",
   permissions: ['ADMINISTRATOR', 'MANAGE_GUILD', '...'], // For no permissions, just set permissions to false.
   execute: pingEvent // Set to false or put a function to execute when the command is executed
 }, true); // Set to false for no prefix (only for this command)
@@ -42,14 +55,18 @@ bot.createCommad({
 bot.createCommand({
     name: "pause",
     reply: "The bot is now sleeping! Use the _!unpause_ command to unpause the bot",
+    category: "🚷 Admin",
     ping: true,
+    description: "Pause the bot.",
     permissions: ["ADMINISTRATOR"],
     execute: bot.pause
 }, true);
 bot.createCommand({
     name: "unpause",
     reply: "The bot is now unpaused!",
+    category: "🚷 Admin",
     ping: true,
+    description: "Pause the bot.",
     permissions: ["ADMINISTRATOR"],
     execute: bot.unpause,
     ignorePause: true
