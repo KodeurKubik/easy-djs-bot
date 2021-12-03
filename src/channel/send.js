@@ -6,4 +6,4 @@ function send(channelId, guildId, message) {
     sendMessage(channelId, guildId, message)
 }
 
-exports.send = send;
+module.exports = send
