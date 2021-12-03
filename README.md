@@ -42,7 +42,7 @@ async function pingEvent(author, guild, channel, args) {
     bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: \`${args.join(' ; ')}*\``)
 }
 
-bot.createCommad({
+bot.createCommand({
   name: 'ping', // Name of the command (must be unique)
   reply: 'Pong!', // Set to false for no reponse
   category: "🌀 Other",
