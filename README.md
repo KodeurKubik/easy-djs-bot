@@ -28,32 +28,34 @@ bot.setPrefix('!');
 bot.setToken('PUT YOUR DISCORD BOT TOKEN HERE');
 
 async function pingEvent(author, guild, channel, args) {
-    bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: *${args.join(' ; ')}*`)
+    bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: \`${args.join(' ; ')}*\``)
 }
 
 bot.createCommad({
-  name: 'ping',
+  name: 'ping', // Name of the command (must be unique)
   reply: 'Pong!', // Set to false for no reponse
-  ping: true,
-  permissions: ['role id 1', 'role id 2', '...'], // For no permissions, just set permissions to False.
-  execute: messageArgsEvent
+  ping: true, // Ping the user that used the command ?
+  permissions: ['ADMINISTRATOR', 'MANAGE_GUILD', '...'], // For no permissions, just set permissions to false.
+  execute: pingEvent // Set to false or put a function to execute when the command is executed
 }, true); // Set to false for no prefix (only for this command)
 
-
-
-async function pingEvent(author, guild, channel, args) {
-    bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: ${args[0]}`)
-}
-
 bot.createCommand({
-    name: "ping",
-    reply: "Pong!",
+    name: "pause",
+    reply: "The bot is now sleeping! Use the _!unpause_ command to unpause the bot",
     ping: true,
-    permissions: [],
-    execute: pingEvent
+    permissions: ["ADMINISTRATOR"],
+    execute: bot.pause
+}, true);
+bot.createCommand({
+    name: "unpause",
+    reply: "The bot is now unpaused!",
+    ping: true,
+    permissions: ["ADMINISTRATOR"],
+    execute: bot.unpause,
+    ignorePause: true
 }, true);
 
-bot.waitForCommand()
+bot.waitForCommand() // Start the bot
 ```
 
 ## Links
