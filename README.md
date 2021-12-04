@@ -66,7 +66,7 @@ bot.createCommand({
     reply: "The bot is now unpaused!",
     category: "🚷 Admin",
     ping: true,
-    description: "Pause the bot.",
+    description: "Unpause the bot.",
     permissions: ["ADMINISTRATOR"],
     execute: bot.unpause,
     ignorePause: true
