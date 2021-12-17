@@ -82,4 +82,4 @@ bot.waitForCommand() // Start the bot
 
 ## Help
 
-If you don't understand the documentation here or an error has occured, you can report it in this github, send a Discord message to Totoro_Gaming#0243 or send a mail to this email : totorogaming.mc@gmail.com
+If you the documentation throw an Error or an error has occured in your code and the documentation don't say what you need to do, you can report it in this github, send a Discord message to Totoro_Gaming#0243 or send a mail to this email : totorogaming.mc@gmail.com
