@@ -79,7 +79,8 @@ bot.waitForCommand() // Start the bot
 
 - [GitHub](https://github.com/totorogaming/easy-djs-bot)
 - [NPM](https://www.npmjs.com/package/easy-djs-bot)
+- [Discord](https://discord.gg/9QuTecevzx)
 
 ## Help
 
-If you the documentation throw an Error or an error has occured in your code and the documentation don't say what you need to do, you can report it in this github, send a Discord message to Totoro_Gaming#0243 or send a mail to this email : totorogaming.mc@gmail.com
+If you the documentation throw an Error or an error has occured in your code and the documentation don't say what you need to do, you can report it in this github, send a Discord message [on the Discord](https://discord.gg/9QuTecevzx) or send a mail to this email : totorogaming.mc@gmail.com
