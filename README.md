@@ -36,10 +36,10 @@ bot.setHelpCategory([
         name: "🚷 Admin",
         value: "Commands for Admins"
     }
-])$
+])
 
 async function pingEvent(author, guild, channel, args) {
-    bot.channel.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: \`${args.join(' ; ')}*\``)
+    bot.channels.send(channel.id, guild.id, `Pong again, __${author.username}__! Arguments: \`${args.join(' ; ')}*\``)
 }
 
 bot.createCommand({
