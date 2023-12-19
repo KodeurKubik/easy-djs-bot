@@ -2,8 +2,8 @@
 
 const { sendMessage } = require('../client/MainFunctions');
 
-function send(channelId, guildId, message) {
-    sendMessage(channelId, guildId, message)
+async function send(channelId, guildId, message) {
+    return await sendMessage(channelId, guildId, message)
 }
 
 module.exports = send

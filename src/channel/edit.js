@@ -2,8 +2,8 @@
 
 const { editChannel } = require('../client/MainFunctions');
 
-function edit(channelId, guildId, newName) {
-    editChannel(channelId, guildId, newName)
+async function edit(channelId, guildId, newName) {
+    return await editChannel(channelId, guildId, newName)
 }
 
 module.exports = edit

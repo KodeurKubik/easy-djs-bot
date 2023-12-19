@@ -1,76 +1,76 @@
 'use strict';
 
-const { Client, MessageEmbed, Intents, MessageActionRow, MessageSelectMenu } = require('discord.js')
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_WEBHOOKS] })
+const { Client, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, IntentsBitField } = require('discord.js');
+const client = new Client({ intents: Object.keys(IntentsBitField.Flags).filter(i => isNaN(i)) });
 
-let allComs = {}
-let prefixed = ""
-let token = undefined
-let on = false
-let coms_cat = []
+var allComs = {};
+var prefixed = "";
+var token = undefined;
+var on = false;
+var coms_cat = [];
 
-async function setPrefix(newPrefix) { prefixed = newPrefix }
-async function setToken(newToken) { token = newToken; client.login(token) }
+function setPrefix(newPrefix) { prefixed = newPrefix };
+function setToken(newToken) { token = newToken; client.login(token) };
 
 async function send(channelId, guildId, message) {
-    if (token === undefined) throw new Error('The bot must be loged in! Use the bot.setToken(token) function to log your bot in.')
-    await client.guilds.cache.find(g => g.id === guildId).channels.cache.find(c => c.id == channelId).send(message)
-}
+    if (token === undefined) throw new Error('The bot must be loged in! Use the bot.setToken(token) function to log your bot in.');
+    await client.guilds.cache.find(g => g.id === guildId).channels.cache.find(c => c.id == channelId).send(message);
+};
 async function editChannel(channelId, guildId, newName) {
-    if (token === undefined) throw new Error('The bot must be loged in! Use the bot.setToken(token) function to log your bot in.')
+    if (token === undefined) throw new Error('The bot must be loged in! Use the bot.setToken(token) function to log your bot in.');
     await client.guilds.cache.find(g => g.id === guildId).channels.cache.find(c => c.id == channelId).edit({ name: newName });
-}
+};
 
-async function setHelpCategory(array) {
+function setHelpCategory(array) {
     array.forEach((e) => {
         if (!e.name) throw new Error('The category need a name!')
         if (!e.value) throw new Error('The category need a value (a description)!')
         e.inline = false
-    })
-    coms_cat = array
-}
+    });
+    coms_cat = array;
+};
 
 
-async function addCommand({ name, reply, category, ping, permissions, execute, ignorePause, description }, prefix) {
-    let pref = ""
-    if (prefix == true) pref = prefix
-    if (prefix == false) pref = ""
+function addCommand({ name, reply, category, ping, permissions, execute, ignorePause, description }, prefix) {
+    let pref = "";
+    if (prefix == true) pref = prefix;
+    if (prefix == false) pref = "";
 
-    if (allComs[prefixed + name]) throw new Error(`The command ${prefixed + name} already exists!`)
-    if (!name.indexOf(' ') === -1) throw new Error(`The the command ${name} cannot contain spaces!`)
-    if (!prefixed.indexOf(' ') === -1) throw new Error(`The the prefix ${prefixed} cannot contain spaces!`)
-    if (name === prefixed + "help") throw new Error(`The command name cannot be ${prefixed + help}`)
+    if (allComs[prefixed + name]) throw new Error(`The command ${prefixed + name} already exists!`);
+    if (!name.indexOf(' ') === -1) throw new Error(`The the command ${name} cannot contain spaces!`);
+    if (!prefixed.indexOf(' ') === -1) throw new Error(`The the prefix ${prefixed} cannot contain spaces!`);
+    if (name === prefixed + "help") throw new Error(`The command name cannot be ${prefixed + help}`);
 
-    allComs[prefixed + name] = { name, reply, permissions, category, ping, execute, ignorePause, description }
-    console.log(`Created the ${prefixed + name} command!`)
-}
+    allComs[prefixed + name] = { name, reply, permissions, category, ping, execute, ignorePause, description };
+    console.log(`Created the ${prefixed + name} command!`);
+};
 
-async function allCommands() {
-    return allComs
-}
+function allCommands() {
+    return allComs;
+};
 
-async function waitForCommand() { on = true; run() }
-async function pause() { on = false }
-async function unpause() { on = true }
+function waitForCommand() { on = true; run() };
+function pause() { on = false };
+function unpause() { on = true };
 
-async function run() {
-    const guild_help = new Map()
-    let all_help_choices = []
+function run() {
+    const guild_help = new Map();
+    let all_help_choices = [];
     coms_cat.forEach((e) => {
         all_help_choices.push({
             label: e.name,
             description: e.value,
             value: e.name
-        })
-    })
+        });
+    });
 
     client.on('interactionCreate', async interaction => {
-        if (interaction.isSelectMenu()) {
+        if (interaction.isStringSelectMenu()) {
 
             if (interaction.customId === interaction.guild.id + "-help") {
-                const help_choice_row = new MessageActionRow()
+                const help_choice_row = new ActionRowBuilder()
                     .addComponents(
-                        new MessageSelectMenu()
+                        new StringSelectMenuBuilder()
                             .setCustomId(`${interaction.guild.id}-help`)
                             .setPlaceholder(interaction.values[0])
                             .addOptions(all_help_choices),
@@ -80,7 +80,7 @@ async function run() {
                     let e = allComs[i]
                     if (e.category === interaction.values[0]) all_coms += `\`${e.name}\`: _${e.description}_ (${!e.permissions.join('') == "" ? e.permissions : "No permission required"})\n`
                 })
-                const help_actual = new MessageEmbed()
+                const help_actual = new EmbedBuilder()
                     .setTitle("Help \| " + interaction.values[0])
                     .setDescription(all_coms)
                 await interaction.update({ embeds: [help_actual], components: [help_choice_row] });
@@ -92,12 +92,12 @@ async function run() {
         let args = message.content.split(" ")
 
         if (args[0] === prefixed + "help") {
-            let help_embed = new MessageEmbed()
+            let help_embed = new EmbedBuilder()
                 .setTitle('Help command')
                 .addFields(coms_cat)
-            const help_choice_row = new MessageActionRow()
+            const help_choice_row = new ActionRowBuilder()
                 .addComponents(
-                    new MessageSelectMenu()
+                    new StringSelectMenuBuilder()
                         .setCustomId(`${message.guild.id}-help`)
                         .setPlaceholder('Nothing selected...')
                         .addOptions(all_help_choices),
@@ -122,7 +122,7 @@ async function run() {
             }
 
             if (toDo === false) {
-                const errorEmbed = new MessageEmbed()
+                const errorEmbed = new EmbedBuilder()
                     .setDescription('🚫 Permission denied!\nYou need one of this role to access to this command: ' + allPerm.join(' ; '))
                 message.reply({ embeds: [errorEmbed] })
 
@@ -152,19 +152,21 @@ async function run() {
                 com.execute(author, guild, channel, args)
             }
         }
-    })
+    });
 
-    client.on('ready', () => console.log(`Started ${client.user.tag}`))
-}
+    client.on('ready', () => console.log(`Started ${client.user.tag}`));
+};
 
-exports.waitForCommand = waitForCommand;
-exports.pause = pause;
-exports.unpause = unpause;
-exports.allCommands = allCommands;
-exports.addCommand = addCommand;
-exports.setPrefix = setPrefix;
-exports.setToken = setToken;
+module.exports = {
+    waitForCommand: waitForCommand,
+    pause: pause,
+    unpause: unpause,
+    allCommands: allCommands,
+    addCommand: addCommand,
+    setPrefix: setPrefix,
+    setToken: setToken,
 
-exports.sendMessage = send;
-exports.editChannel = editChannel;
-exports.setHelpCategory = setHelpCategory;
+    sendMessage: send,
+    editChannel: editChannel,
+    setHelpCategory: setHelpCategory,
+};
